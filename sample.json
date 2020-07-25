@@ -1,0 +1,29 @@
+{
+  "values": [
+    {
+      "id": 1,
+      "value": "Art"
+    },
+    {
+      "id": 2,
+      "value": "Religion"
+    },
+    {
+      "id": 3,
+      "value": "Movies"
+    },
+    {
+      "id": 4,
+      "value": "Politics"
+    },
+    {
+      "id": 5,
+      "value": "Science"
+    },
+    {
+      "id": 5,
+      "value": "Maths"
+    }
+  ]
+}
+
