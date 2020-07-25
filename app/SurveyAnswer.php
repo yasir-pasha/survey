@@ -6,5 +6,5 @@
   
   class SurveyAnswer extends Model
   {
-    protected $fillable = ['survey_response_id', 'question_id', 'answer', 'created_at', 'updated_at'];
+    protected $fillable = ['survey_instance_id', 'question_id', 'answer', 'created_at', 'updated_at'];
   }

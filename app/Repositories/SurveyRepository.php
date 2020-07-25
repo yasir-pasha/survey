@@ -6,7 +6,7 @@
   
   use App\Survey;
   use App\SurveyAnswer;
-  use App\SurveyResponse;
+  use App\SurveyInstance;
   use Illuminate\Http\Request;
   use Illuminate\Support\Facades\Auth;
   
@@ -16,11 +16,11 @@
     public function getAll(int $user_id)
     {
       return Survey::orderBy('created_at', 'DESC')
-        ->leftJoin('survey_responses', function ($join) use ($user_id) {
-          $join->on('survey_responses.survey_id', '=', 'surveys.id')
-            ->where('survey_responses.user_id', '=',$user_id);
+        ->leftJoin('survey_instances', function ($join) use ($user_id) {
+          $join->on('survey_instances.survey_id', '=', 'surveys.id')
+            ->where('survey_instances.user_id', '=',$user_id);
         })
-        ->selectRaw('surveys.*,CASE when survey_responses.status is null then 0 else survey_responses.status end as status')
+        ->selectRaw('surveys.*,CASE when survey_instances.status is null then 0 else survey_instances.status end as status')
         ->paginate(25);
     }
     
@@ -42,9 +42,9 @@
           throw new \Exception('Please answer all the questions to submit.');
         }
       }
-      $survey_response_id = $this->saveSurveyResponse($user_id, $request->get('survey_id'));
-      $total_answer_saved = $this->saveAnswers($survey_response_id, $answers);
-      $status             = $this->updateSurveyStatus($survey_response_id, $total_survey_questions, $total_answer_saved);
+      $survey_instance_id = $this->saveSurveyResponse($user_id, $request->get('survey_id'));
+      $total_answer_saved = $this->saveAnswers($survey_instance_id, $answers);
+      $status             = $this->updateSurveyStatus($survey_instance_id, $total_survey_questions, $total_answer_saved);
       return $status;
     }
     
@@ -54,7 +54,7 @@
       if (!is_null($is_exist)) {
         return $is_exist->id;
       } else {
-        $survey_response            = new SurveyResponse();
+        $survey_response            = new SurveyInstance();
         $survey_response->user_id   = $user_id;
         $survey_response->survey_id = $survey_id;
         $survey_response->save();
@@ -64,10 +64,10 @@
     
     private function getSurveyResponse(int $user_id, int $survey_id)
     {
-      return SurveyResponse::whereUserId($user_id)->whereSurveyId($survey_id)->first();
+      return SurveyInstance::whereUserId($user_id)->whereSurveyId($survey_id)->first();
     }
     
-    private function saveAnswers(int $survey_response_id, array $answers)
+    private function saveAnswers(int $survey_instance_id, array $answers)
     {
       if (count($answers) > 0) {
         foreach ($answers as $id => $answer) {
@@ -80,7 +80,7 @@
             'answer' => $answer
           ];
           $attribute = [
-            'survey_response_id' => $survey_response_id,
+            'survey_instance_id' => $survey_instance_id,
             'question_id'        => $id,
           ];
           SurveyAnswer::updateOrCreate($attribute, $data);
@@ -91,7 +91,7 @@
       return count($answers);
     }
     
-    private function updateSurveyStatus(int $survey_response_id, int $total_survey_questions, int $total_answer_saved)
+    private function updateSurveyStatus(int $survey_instance_id, int $total_survey_questions, int $total_answer_saved)
     {
       if ($total_answer_saved === 0) {
         $status = 0;
@@ -103,7 +103,7 @@
         }
       }
       
-      $survey_response         = SurveyResponse::findOrFail($survey_response_id);
+      $survey_response         = SurveyInstance::findOrFail($survey_instance_id);
       $survey_response->status = $status;
       $survey_response->save();
       
@@ -112,6 +112,6 @@
   
     public function surveyResponseByUser(int $user_id, int $id)
     {
-      return SurveyResponse::whereUserId($user_id)->whereSurveyId($id)->firstOrFail();
+      return SurveyInstance::whereUserId($user_id)->whereSurveyId($id)->firstOrFail();
     }
   }

@@ -16,8 +16,8 @@
       Schema::table('survey_answers', function (Blueprint $table) {
         $table->dropForeign('survey_answers_user_id_foreign');
         $table->dropColumn('user_id');
-        $table->unsignedBigInteger('survey_response_id')->nullable(false)->after('id');
-        $table->foreign('survey_response_id')->references('id')->on('survey_responses');
+        $table->unsignedBigInteger('survey_instance_id')->nullable(false)->after('id');
+        $table->foreign('survey_instance_id')->references('id')->on('survey_instances');
       });
     }
     

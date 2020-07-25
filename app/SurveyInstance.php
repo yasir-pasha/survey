@@ -4,7 +4,7 @@
   
   use Illuminate\Database\Eloquent\Model;
   
-  class SurveyResponse extends Model
+  class SurveyInstance extends Model
   {
     public function answers()
     {
