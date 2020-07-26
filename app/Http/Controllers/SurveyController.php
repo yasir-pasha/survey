@@ -30,16 +30,21 @@
     public function fill(int $id)
     {
       $survey = $this->survey->findById($id);
-      return view('surveys.fill', compact('survey'));
+      $survey_instance = $this->survey->surveyResponseByUser($this->user_id, $id);
+      $answers         = optional($survey_instance)->answers;
+      if(!is_null($answers)){
+        $answers = $answers->keyBy('question_id');
+      }
+      return view('surveys.fill', compact('survey','answers','survey_instance'));
     }
     
     public function view(int $id)
     {
-      $survey           = $this->survey->findById($id);
-      $questions = $survey->questions;
-      $survey_response  = $this->survey->surveyResponseByUser($this->user_id, $id);
-      $answers   = $survey_response->answers->keyBy('question_id');
-      return view('surveys.view', compact('survey', 'survey_response', 'answers','questions'));
+      $survey          = $this->survey->findById($id);
+      $questions       = $survey->questions;
+      $survey_interest = $this->survey->surveyResponseByUser($this->user_id, $id);
+      $answers         = $survey_interest->answers->keyBy('question_id');
+      return view('surveys.view', compact('survey', 'survey_interest', 'answers', 'questions'));
     }
     
     public function submit(Request $request)

@@ -20,14 +20,18 @@
 @else
     @php
         $options = json_decode($data->options);
+        $id=[];
+        if(isset($answers[$question->id])){
+           $id = json_decode($answers[$question->id]->answer);
+        }
     @endphp
     @forelse($options->values as $option)
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="question_id[{{$data->id}}][]"
-                   id="{{$data->id}}"
-                   value="{{$option->id}}">
-            <label class="form-check-label" for="inlineRadio1">{{$option->value}}</label>
+            <input class="form-check-input" type="checkbox"  name="question_id[{{$data->id}}][]"
+                   id="option-{{$option->id}}"
+                   value="{{$option->id}}" {{in_array($option->id,$id)?'checked':''}}>
+            <label class="form-check-label" for="option-{{$option->id}}">{{$option->value}}</label>
         </div>
     @empty
     @endforelse

@@ -16,12 +16,15 @@ $options = $options->keyBy('id');
 @else
     @php
         $options = json_decode($data->options);
+        $id='N/A-';
+        if(isset($answers[$question->id])){
+           $id = $answers[$question->id]->answer;
+        }
     @endphp
     <select id="inputState" class="form-control" name="question_id[{{$data->id}}]">
         <option value="">Choose {{$data->question}}</option>
         @forelse($options->values as $option)
-
-            <option value="{{$option->id}}">{{$option->value}}</option>
+            <option value="{{$option->id}}" {{$id==$option->id?'selected':''}}>{{$option->value}}</option>
         @empty
         @endforelse
     </select>

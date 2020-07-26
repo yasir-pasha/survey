@@ -1,0 +1,1 @@
+1. There is no flow is defined in the document related to how to assign the "Survey Template" to user. But there is a way is described that, when user logged in first time than all surveys are assigned to him/her. So I assume that when the user is logged in than all the surveys are shown to user and the status of all the surveys are "Pending".

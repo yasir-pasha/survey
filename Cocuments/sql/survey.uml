@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.SCHEMA:survey</OriginalElement>
+  <nodes>
+    <node x="-211.3295904887714" y="15.141347424042273">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.users</node>
+    <node x="473.66248348745034" y="59.18890356671071">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.failed_jobs</node>
+    <node x="80.6041941875826" y="622.223249669749">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_answers</node>
+    <node x="-213.3553500660504" y="604.885072655218">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_questions</node>
+    <node x="147.8543593130779" y="43.013870541611624">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_instances</node>
+    <node x="724.4035667107001" y="63.31836195508586">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.migrations</node>
+    <node x="-200.29128137384407" y="373.0799207397622">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.surveys</node>
+    <node x="735.0435931307794" y="202.87450462351387">8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.password_resets</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_instances" target="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.users">
+      <point x="64.24999999999997" y="-103.0" />
+      <point x="0.0" y="157.0" />
+    </edge>
+    <edge source="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_questions" target="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.surveys">
+      <point x="0.0" y="-116.5" />
+      <point x="-59.0" y="89.5" />
+    </edge>
+    <edge source="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_answers" target="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_instances">
+      <point x="85.0" y="-103.0" />
+      <point x="354.875" y="622.0" />
+      <point x="411.25" y="622.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_instances" target="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.surveys">
+      <point x="-64.25000000000003" y="-103.0" />
+      <point x="347.0" y="339.0" />
+      <point x="246.49999999999997" y="339.0" />
+      <point x="59.0" y="89.5" />
+    </edge>
+    <edge source="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_answers" target="8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.survey_questions">
+      <point x="-85.0" y="-103.0" />
+      <point x="184.875" y="622.0" />
+      <point x="128.5" y="622.0" />
+      <point x="0.0" y="116.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5920066611157369" x="376.5" y="426.5" />
+  <SelectedNodes>
+    <node>8c1c4fe2-130e-4f48-a2d5-afc916d9d5da.TABLE:survey.password_resets</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

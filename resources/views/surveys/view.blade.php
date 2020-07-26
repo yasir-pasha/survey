@@ -4,7 +4,11 @@
 
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">{{$survey->name }}</div>
+            <div class="card-header">
+                <h4 class="float-left">{{$survey->name }}</h4>
+                <div class="float-right"><b>Completed Date:</b> {{\Carbon\Carbon::parse($survey_interest->updated_at)->format('d-m-Y h:i A') }}</div>
+            </div>
+
 
             <div class="card-body">
                 <div>

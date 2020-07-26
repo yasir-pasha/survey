@@ -18,7 +18,7 @@
                                        data-question_type="{{$question->field_type}}"
                                        data-is_required="0">{{$question->question}}:</label>
 
-                                @include('surveys.fields.'.$question->field_type,['data'=>$question])
+                                @include('surveys.fields.'.$question->field_type,['data'=>$question,'answers'=>$answers])
                             </div>
                         @empty
                             <div class="col-md-12">

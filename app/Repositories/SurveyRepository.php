@@ -112,6 +112,6 @@
   
     public function surveyResponseByUser(int $user_id, int $id)
     {
-      return SurveyInstance::whereUserId($user_id)->whereSurveyId($id)->firstOrFail();
+      return SurveyInstance::whereUserId($user_id)->whereSurveyId($id)->first();
     }
   }
